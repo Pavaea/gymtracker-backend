@@ -1,27 +1,27 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="luxury">
 <head>
     <meta charset="UTF-8">
     <title>Gym Tracker</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            plugins: [window.daisyui],
-        }
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/daisyui"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
-<body class="min-h-screen bg-base-200 p-4">
+<body class="max-w-2xl m-auto h-screen flex items-center justify-center">
+<div class="middle-container">
 
-<div class="max-w-xl mx-auto">
-    <h1 class="text-3xl font-bold text-center mb-6">Gym Tracker</h1>
+    <div class="gym-tracker-typewriter m-auto">
+        <div>
+            <p>GYM TRACKER</p>
+        </div>
+    </div>
 
-    <div class="card bg-white shadow-md p-6 space-y-4">
-        <button class="btn btn-primary w-full">Start Workout</button>
-        <button class="btn btn-secondary w-full">View History</button>
-        <button class="btn btn-accent w-full">Templates</button>
+    <hr class="reveal-line">
+
+    <div class="login-container">
+        <button class="btn btn-wide btn-xl login-button">Log In</button>
     </div>
 </div>
-
 </body>
 </html>

@@ -1,0 +1,81 @@
+.gym-tracker-typewriter {
+    display: flex;
+    justify-content: center;
+}
+
+.gym-tracker-typewriter p {
+    font-family: monospace;
+    font-size: 5.5rem;
+    margin-inline: auto;
+    overflow:hidden;
+    padding-right: 0.3em;
+    /* Keeps on a single line */
+    white-space: nowrap;
+    /* The cursor */
+    border-right: 10px solid;
+    /* steps = number of characters */
+    animation: typing 1.5s steps(11) forwards,
+    blink 1s step-end infinite;
+}
+/* Line hidden by default */
+.reveal-line {
+    width: 0;
+    height: 2px;
+    background-color: #a8947b;
+    margin: 30px auto;
+    border: none;
+    opacity: 0;
+    animation: revealLine 1s forwards;
+    animation-delay: 1.8s; /* right after typing ends */
+}
+
+/* Button hidden by default */
+.login-container {
+    text-align: center;
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+    animation-delay: 2s; /* after line shows */
+}
+
+.login-button {
+    font-size: 1.25rem;
+    padding: 0.5em 1.5em;
+    margin-top: 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #222;
+    color: #fff;
+    transition: background-color 0.3s;
+}
+
+.login-button:hover {
+    background-color: #444;
+}
+@keyframes typing {
+    from {
+        width:0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+@keyframes revealLine {
+    to {
+        width: 100%;
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
