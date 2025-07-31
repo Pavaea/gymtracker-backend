@@ -37,21 +37,6 @@
     animation-delay: 2s; /* after line shows */
 }
 
-.login-button {
-    font-size: 1.25rem;
-    padding: 0.5em 1.5em;
-    margin-top: 20px;
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    background-color: #222;
-    color: #fff;
-    transition: background-color 0.3s;
-}
-
-.login-button:hover {
-    background-color: #444;
-}
 @keyframes typing {
     from {
         width:0;
