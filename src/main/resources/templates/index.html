@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="luxury">
+<html lang="en" data-theme="luxury" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Gym Tracker</title>
@@ -15,13 +15,21 @@
             <p>GYM TRACKER</p>
         </div>
     </div>
-
     <hr class="reveal-line">
+    <div class="w-xl m-auto flex mt-10 justify-center login-container md:w-sm">
+        <form th:action="@{/login}" method="post">
+            <label for="username" class="sr-only">Username</label>
+            <input type="text" name="username" id="username" placeholder="Username"
+                   class="input w-full mt-5 py-10 md:py-7 text-2xl md:text-xl" />
 
-    <div class="w-full flex mt-10 justify-center login-container ">
-        <button class="btn btn-xl w-full py-10 text-4xl">
-            Log In
-        </button>
+            <label for="password" class="sr-only">Username</label>
+            <input type="text" name="password" id="password" placeholder="Password"
+                   class="input w-full mt-10 md:mt-5 py-10 md:py-7 text-2xl md:text-xl" />
+
+            <button class="btn btn-xl w-full mt-5 py-10 md:py-7 text-4xl md:text-xl">
+                Log In
+            </button>
+        </form>
     </div>
 </div>
 </body>
