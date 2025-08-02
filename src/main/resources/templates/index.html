@@ -16,17 +16,18 @@
         </div>
     </div>
     <hr class="reveal-line">
-    <div class="w-xl m-auto flex mt-10 justify-center login-container md:w-sm">
+    <div class="w-xl m-auto flex-col mt-10 justify-center login-container md:w-sm">
+        <p class="w-full m-auto flex mt-5 text-xl" th:if="${param.error}">Invalid username or password.</p>
         <form th:action="@{/login}" method="post">
             <label for="username" class="sr-only">Username</label>
-            <input type="text" name="username" id="username" placeholder="Username"
+            <input type="text" name="username" id="username" placeholder="Username" required
                    class="input w-full mt-5 py-10 md:py-7 text-2xl md:text-xl" />
 
-            <label for="password" class="sr-only">Username</label>
-            <input type="text" name="password" id="password" placeholder="Password"
+            <label for="password" class="sr-only">Password</label>
+            <input type="password" name="password" id="password" placeholder="Password" required
                    class="input w-full mt-10 md:mt-5 py-10 md:py-7 text-2xl md:text-xl" />
 
-            <button class="btn btn-xl w-full mt-5 py-10 md:py-7 text-4xl md:text-xl">
+            <button type ="submit" class="btn btn-xl w-full mt-5 py-10 md:py-7 text-4xl md:text-xl">
                 Log In
             </button>
         </form>
