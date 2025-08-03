@@ -1,11 +1,48 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" data-theme="luxury" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>ADMIN</title>
+    <meta charset="UTF-8">
+    <title>Gym Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
+<body class="h-screen flex justify-center">
+<div class="middle-container flex-col ml-10 mr-10 mt-15 w-full md:min-w-[600px] md:max-w-[1000px] md:w-min">
+    <h1 class="text-5xl md:text-3xl color w-full text-stone-500">Welcome back </h1>
+    <h1 class="text-8xl md:text-7xl color w-full"><span th:text="${username}">AdminName</span></h1>
+    <hr class="mt-2 text-stone-500">
+    <h3 th:if="${users != null and !users.isEmpty()}" class="mt-15 text-stone-400 text-3xl md:text-base">here is the list of all users</h3>
 
-<body>
-<h1>ADMIN</h1>
-<p>ADMIN</p>
+    <ul th:if="${users != null and !users.isEmpty()}" class="mt-15 list bg-base-100 rounded-box shadow-md">
+        <li th:each="user, stat : ${users}" class="list-row">
+            <div class="text-7xl font-thin opacity-30 tabular-nums "><span th:text="${stat.index + 1}">01</span></div>
+            <div>
+                <svg th:if="${user.role.name() == 'USER'}" class="size-20 rounded-box"
+                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path fill-rule="evenodd"
+                          d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
+                          clip-rule="evenodd"/>
+                </svg>
+
+                <svg th:if="${user.role.name() == 'ADMIN'}" class="size-20 rounded-box" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                     fill="currentColor">
+                    <path fill-rule="evenodd"
+                          d="M14.615 1.595a.75.75 0 0 1 .359.852L12.982 9.75h7.268a.75.75 0 0 1 .548 1.262l-10.5 11.25a.75.75 0 0 1-1.272-.71l1.992-7.302H3.75a.75.75 0 0 1-.548-1.262l10.5-11.25a.75.75 0 0 1 .913-.143Z"
+                          clip-rule="evenodd"/>
+                </svg>
+            </div>
+
+            <div class="list-col-grow">
+                <div class="text-3xl md:text-base"><span th:text="${user.username}">USERNAME</span></div>
+                <div class="text-xs uppercase font-semibold opacity-60"></div>
+            </div>
+        </li>
+    </ul>
+    <a th:href="@{/admin/add-user}" class="btn btn-soft btn-success mt-10 w-full py-10 text-2xl md:text-base md:py-5 md:w-1/2">Add User</a>
+    <a th:href="@{/admin/remove-user}" class="btn btn-soft btn-error mt-10 w-full py-10 text-2xl md:text-base md:py-5 md:w-1/3">Remove User</a>
+
+</div>
 </body>
-
 </html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="luxury" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gym Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="h-screen flex justify-center">
+<div class="middle-container flex-col ml-10 mr-10 mt-15 w-full md:min-w-[600px] md:max-w-[1000] md:w-min">
+    <a th:href="@{/admin}" class="btn btn-outline text-2xl md:text-lg py-6">Go Back</a>
+    <hr class="mt-2 text-stone-500">
+    <h3 class="mt-15 text-5xl md:text-3xl">Remove User</h3>
+
+    <form class="w-full mt-10 fieldset bg-base-200 border-base-300 rounded-box border p-4" th:action="@{/admin/remove-chosen-user}" method="post">
+        <label class="label text-2xl mt-5 md:mt-auto md:text-base" for="chosen-user">Select user to delete:</label>
+        <select class="select text-2xl w-full h-15 md:text-base md:h-10" name="chosen-user" id="chosen-user">
+            <option value="" disabled selected>Select user</option>
+            <option th:each="user : ${users}" th:value="${user.username}" th:text="${user.username}">username</option>
+        </select>
+        <label class="mt-5 mb-5 text-sm text-error" for="im-sure">Are you sure you want to permanently delete this user and lose all associated data?</label>
+        <input name="im-sure" id="im-sure" type="checkbox" class="checkbox checkbox-error ml-1" required />
+        <button type="submit" class="btn btn-error mt-7 text-2xl py-8 md:py-6">remove</button>
+    </form>
+</div>
+</body>
+</html>
