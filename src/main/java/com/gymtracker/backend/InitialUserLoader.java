@@ -4,23 +4,27 @@ import com.gymtracker.backend.domain.user.AppUserRepository;
 import com.gymtracker.backend.domain.user.Role;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import com.gymtracker.backend.domain.user.AppUser;
 
 @Component
+@ConditionalOnProperty(name = "app.seed.enabled", havingValue = "true")
 public class InitialUserLoader implements CommandLineRunner {
 
     private final AppUserRepository appUserRepository;
     private final PasswordEncoder passwordEncoder;
 
-    @Value("${ADMIN_USERNAME}")
+
+    @Value("${app.seed.username}")
     private String adminUsername;
 
-    @Value("${ADMIN_PASSWORD}")
+    @Value("${app.seed.password}")
     private String adminPassword;
 
-    @Value("${ADMIN_ROLE}")
+    @Value("${app.seed.role:ADMIN}")
     private String adminRole;
 
     public InitialUserLoader(AppUserRepository appUserRepository, PasswordEncoder passwordEncoder) {
