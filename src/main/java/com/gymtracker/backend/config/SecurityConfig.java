@@ -67,7 +67,7 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(List.of(
                 "http://localhost:5173",                          // dev
-                "https://pavaea.github.io/gymtracker-frontend" // project GitHub Pages
+                "https://pavaea.github.io" // project GitHub Pages
         ));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
