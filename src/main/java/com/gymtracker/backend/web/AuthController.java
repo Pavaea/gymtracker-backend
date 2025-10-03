@@ -28,7 +28,7 @@ public class AuthController {
                 )
         );
 
-        String token = jwtService.generateToken(auth.getName());
+        String token = jwtService.generateToken(auth);
         return ResponseEntity.ok(new TokenResponse(token));
     }
 }
