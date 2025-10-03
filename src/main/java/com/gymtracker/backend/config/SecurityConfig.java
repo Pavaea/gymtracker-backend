@@ -28,18 +28,15 @@ public class SecurityConfig {
 
     @Autowired
     private final CustomUserDetailsService customUserDetailsService;
-    private final CustomLoginSuccessHandler customLoginSuccessHandler;
 
     private final AuthenticationConfiguration authenticationConfiguration;
 
     public SecurityConfig(
             AuthenticationConfiguration authenticationConfiguration,
-            CustomUserDetailsService customUserDetailsService,
-            CustomLoginSuccessHandler customLoginSuccessHandler
+            CustomUserDetailsService customUserDetailsService
     ) {
         this.authenticationConfiguration = authenticationConfiguration;
         this.customUserDetailsService = customUserDetailsService;
-        this.customLoginSuccessHandler = customLoginSuccessHandler;
     }
 
     @Bean
