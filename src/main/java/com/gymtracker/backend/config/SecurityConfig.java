@@ -4,6 +4,7 @@ import com.gymtracker.backend.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
@@ -15,6 +16,9 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+
+
 
 import java.util.List;
 
@@ -26,10 +30,14 @@ public class SecurityConfig {
     private final CustomUserDetailsService customUserDetailsService;
     private final CustomLoginSuccessHandler customLoginSuccessHandler;
 
+    private final AuthenticationConfiguration authenticationConfiguration;
+
     public SecurityConfig(
+            AuthenticationConfiguration authenticationConfiguration,
             CustomUserDetailsService customUserDetailsService,
             CustomLoginSuccessHandler customLoginSuccessHandler
     ) {
+        this.authenticationConfiguration = authenticationConfiguration;
         this.customUserDetailsService = customUserDetailsService;
         this.customLoginSuccessHandler = customLoginSuccessHandler;
     }
@@ -73,5 +81,10 @@ public class SecurityConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager() throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
     }
 }
