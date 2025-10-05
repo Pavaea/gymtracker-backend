@@ -28,7 +28,7 @@ public class AdminController {
     }
 
     @GetMapping("")
-    public String adminIndex(@AuthenticationPrincipal User user, Model model){
+    public Map<String, Object> adminIndex(@AuthenticationPrincipal User user){
         AppUser appUser = appUserRepository.findByUsername(user.getUsername())
                 .orElseThrow(() -> new IllegalStateException("User not found"));
         List<AppUser> allUsersBesidesHim = appUserRepository.findAll();
