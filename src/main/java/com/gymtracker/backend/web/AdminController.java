@@ -39,7 +39,7 @@ public class AdminController {
         response.put("role", "ADMIN");
         response.put("totalUsers", allUsersBesidesHim.size());
         response.put("users", allUsersBesidesHim);
-        return "admin-index";
+        return response;
     }
 
     @GetMapping("/add-user")
