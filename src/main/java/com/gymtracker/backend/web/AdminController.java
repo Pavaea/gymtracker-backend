@@ -9,15 +9,14 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
-@Controller
+@RestController
 @RequestMapping("/admin")
 public class AdminController {
     private final AppUserRepository appUserRepository;
@@ -32,10 +31,14 @@ public class AdminController {
     public String adminIndex(@AuthenticationPrincipal User user, Model model){
         AppUser appUser = appUserRepository.findByUsername(user.getUsername())
                 .orElseThrow(() -> new IllegalStateException("User not found"));
-        model.addAttribute("username", user.getUsername());
         List<AppUser> allUsersBesidesHim = appUserRepository.findAll();
         allUsersBesidesHim.remove(appUser);
-        model.addAttribute("users", allUsersBesidesHim);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("username", appUser.getUsername());
+        response.put("role", "ADMIN");
+        response.put("totalUsers", allUsersBesidesHim.size());
+        response.put("users", allUsersBesidesHim);
         return "admin-index";
     }
 
